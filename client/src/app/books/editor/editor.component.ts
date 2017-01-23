@@ -9,9 +9,9 @@ type editorAction = 'add' | 'edit';
 })
 export class EditorComponent implements OnInit {
   public action: editorAction = 'add';
-  public author: string = 'J. Rouling';
-  public title: string = 'Garry Potter';
-  public description: string = 'bla-bla';
+  public author: string = '';
+  public title: string = '';
+  public description: string = '';
   public status: boolean = false;
 
   public get fileTitle() {

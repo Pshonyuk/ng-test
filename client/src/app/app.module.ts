@@ -8,6 +8,7 @@ import {AppComponent} from './app.component';
 import {BooksComponent} from './books/';
 import {ListComponent} from './books/list';
 import {EditorComponent} from './books/editor';
+import { SessionComponent } from './session/session.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {EditorComponent} from './books/editor';
         AppComponent,
         BooksComponent,
         ListComponent,
-        EditorComponent
+        EditorComponent,
+        SessionComponent
     ],
     imports: [
         BrowserModule,

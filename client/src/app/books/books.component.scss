@@ -1,13 +1,9 @@
 @import "../variables";
+@import "../utils";
 
 :host {
   margin: 0;
   padding: 0;
-
-  .clearfix {
-    overflow: auto;
-    zoom: 1;
-  }
 
   .main-nav {
     border-bottom: 2px solid $mainColor;
