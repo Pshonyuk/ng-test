@@ -6,24 +6,8 @@ import { BooksListComponent } from './books-list/books-list.component';
 
 const routes: Routes = [
     {
-        path: 'books',
-        component: BooksListComponent,
-        // children: [
-        //     {
-        //         path: '',
-        //         children: [
-        //             {
-        //                 path: 'create',
-        //                 component: BooksEditorComponent
-        //             },
-        //             {
-        //                 path: 'edit',
-        //                 component: BooksEditorComponent
-        //             }
-        //         ]
-        //     }
-        //
-        // ]
+        path: 'list',
+        component: BooksListComponent
     },
     {
         path: 'add',

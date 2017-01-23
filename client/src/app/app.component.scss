@@ -1,5 +1,4 @@
-$mainColor: #000;
-$activeLinkColor: #eee;
+@import "variables";
 
 :host {
   margin: 0;
@@ -38,27 +37,6 @@ $activeLinkColor: #eee;
       &[data-direction=left]{
         float: right;
         border: none;
-      }
-    }
-  }
-
-  .search {
-    margin-top: 10px;
-    width: 100%;
-
-    input {
-      border: 2px solid $mainColor;
-      border-radius: 12px;
-
-      box-shadow: 0 2px 5px rgba($mainColor, .4);
-      float: right;
-      font-size: 18px;
-      margin: 5px 10px;
-      padding: 3px 15px;
-      width: 180px;
-
-      &:focus {
-        outline: none;
       }
     }
   }

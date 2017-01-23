@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  margin: 0 auto;
+  width: 800px;
+  font-size: 16px;
+
+  .title {
+    text-transform: uppercase;
+  }
+
+  form {
+    & > * {
+      display: block;
+      font-size: inherit;
+      margin-top: 10px;
+    }
+
+    .full-width {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .file-input-wrapper {
+      text-transform: capitalize;
+      cursor: pointer;
+      font-weight: 700;
+
+      input {
+        display: none;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    textarea {
+      max-width: 100%;
+      min-width: 100%;
+    }
+  }
+}
