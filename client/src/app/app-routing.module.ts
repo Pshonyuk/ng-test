@@ -8,22 +8,30 @@ const routes: Routes = [
     {
         path: 'books',
         component: BooksListComponent,
-        children: [
-            {
-                path: '',
-                children: [
-                    {
-                        path: 'create',
-                        component: BooksEditorComponent
-                    },
-                    {
-                        path: 'edit',
-                        component: BooksEditorComponent
-                    }
-                ]
-            }
-
-        ]
+        // children: [
+        //     {
+        //         path: '',
+        //         children: [
+        //             {
+        //                 path: 'create',
+        //                 component: BooksEditorComponent
+        //             },
+        //             {
+        //                 path: 'edit',
+        //                 component: BooksEditorComponent
+        //             }
+        //         ]
+        //     }
+        //
+        // ]
+    },
+    {
+        path: 'add',
+        component: BooksEditorComponent
+    },
+    {
+        path: 'edit',
+        component: BooksEditorComponent
     }
 ];
 

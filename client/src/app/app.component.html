@@ -1,9 +1,12 @@
-<div class="app">
-    <nav class="main-nav">
-        <a routerLink="books" routerLinkActive="active">Books</a>
-        <a routerLink="books/create" routerLinkActive="active">Add</a>
-        <a routerLink="books/edit" routerLinkActive="active">Edit</a>
-        <a href="#">User</a>
-    </nav>
-    <router-outlet></router-outlet>
+<nav class="main-nav">
+    <a routerLink="books" routerLinkActive="active">Books</a>
+    <a routerLink="add" routerLinkActive="active">Add</a>
+    <a routerLink="edit" routerLinkActive="active">Edit</a>
+    <a href="#" data-direction="left">User</a>
+</nav>
+
+<div class="search clearfix">
+    <input type="text" placeholder="Search" value="">
 </div>
+
+<router-outlet></router-outlet>
