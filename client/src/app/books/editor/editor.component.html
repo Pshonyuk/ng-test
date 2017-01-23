@@ -1,0 +1,20 @@
+<router-outlet></router-outlet>
+<h1 class="title">{{action}}</h1>
+<form action="#" name="books-editor">
+  <label class="file-input-wrapper">
+    <span>{{fileTitle}}</span>
+    <input type="file" name="book" accept="application/pdf">
+  </label>
+  <input class="full-width" type="text" name="author" [value]="author" placeholder="Author">
+  <input class="full-width" type="text" name="title" [value]="title" placeholder="Title">
+  <textarea class="full-width" title="description">{{description}}</textarea>
+  <select title="Status">
+    <option selected disabled hidden>Status</option>
+    <option value="on">On</option>
+    <option value="off">Off</option>
+  </select>
+  <div class="actions">
+    <button>Cancel</button>
+    <button>Submit</button>
+  </div>
+</form>

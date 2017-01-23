@@ -1,0 +1,43 @@
+@import "../variables";
+
+:host {
+  margin: 0;
+  padding: 0;
+
+  .clearfix {
+    overflow: auto;
+    zoom: 1;
+  }
+
+  .main-nav {
+    border-bottom: 2px solid $mainColor;
+    box-shadow: 0 2px 5px rgba($mainColor, .4);
+
+    a {
+      border-left: 2px solid transparent;
+      border-right: 2px solid transparent;
+      color: #000;
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 10px 15px;
+      text-decoration: none;
+      transition: background-color .4s;
+
+      &.active {
+        background-color: $activeLinkColor;
+        border-left-color: $mainColor;
+        border-right-color: $mainColor;
+      }
+
+      &.active:first-child{
+        border-left-color: transparent;
+      }
+
+      &[data-direction=left]{
+        float: right;
+        border: none;
+      }
+    }
+  }
+}

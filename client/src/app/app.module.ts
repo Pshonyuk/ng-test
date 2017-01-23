@@ -5,15 +5,17 @@ import {HttpModule} from '@angular/http';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
-import {BooksEditorComponent} from './books-editor/books-editor.component';
-import {BooksListComponent} from './books-list/books-list.component';
+import {BooksComponent} from './books/';
+import {ListComponent} from './books/list';
+import {EditorComponent} from './books/editor';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        BooksEditorComponent,
-        BooksListComponent,
+        BooksComponent,
+        ListComponent,
+        EditorComponent
     ],
     imports: [
         BrowserModule,
@@ -22,8 +24,7 @@ import {BooksListComponent} from './books-list/books-list.component';
         AppRoutingModule
     ],
     providers: [],
-    bootstrap: [AppComponent],
-    // directives: [ROUTER_DIRECTIVES]
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
