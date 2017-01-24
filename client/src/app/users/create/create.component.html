@@ -1,18 +1,18 @@
-<form action="#" name="session">
+<form name="new-user" (submit)="onSubmit()">
     <label class="input-wrapper clearfix">
         <span>Email address</span>
-        <input type="text" name="login" placeholder="Email address">
+        <input type="email" name="email" required placeholder="Email address" ngModel>
     </label>
     <label class="input-wrapper clearfix">
         <span>password</span>
-        <input type="text" name="password" placeholder="Password">
+        <input type="password" minlength="6" maxlength="16" name="password" required placeholder="Password" ngModel>
     </label>
     <label class="input-wrapper clearfix">
         <span>confirm password</span>
-        <input type="text" name="confirm-password" placeholder="Password">
+        <input type="password" minlength="6" maxlength="16" name="confirm-password" required placeholder="Password" ngModel>
     </label>
     <div class="actions clearfix">
-        <button>Create</button>
+        <input type="submit" value="Create">
         <button>Cancel</button>
     </div>
 </form>

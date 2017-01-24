@@ -26,6 +26,13 @@ export class App {
         connect(_config.databaseUrl);
         this.expressApp = express();
         this._connectRoutes();
+
+        //temp
+        this.expressApp.use(function(req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        });
     }
 
     public get apiInfo(): apiInfo {

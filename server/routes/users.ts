@@ -1,8 +1,9 @@
 import express = require('express');
 import Router = express.Router;
 import {UserModel} from '../models/User';
+import {logger} from "../logger";
 
-export const path: string = "/users/";
+export const path: string = "/api/users";
 
 export const action = (app) => {
     const router = Router();
@@ -11,9 +12,14 @@ export const action = (app) => {
         next();
     });
 
-    router.post('/users/', (req, res) => {
-
+    router.post('/', (req, res) => {
+        logger.info("test post");
+        res.json({test: 1});
     });
 
+    router.get('/', (req, res) => {
+        logger.info("test get");
+        res.json({test: 1});
+    });
     return router;
 };
