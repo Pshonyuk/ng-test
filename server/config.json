@@ -1,0 +1,8 @@
+{
+  "port": 3000,
+  "routesPath": "./routes",
+  "databaseUrl": "mongodb://localhost/mongoDB",
+  "api": {
+    "version": "0.0.1"
+  }
+}
