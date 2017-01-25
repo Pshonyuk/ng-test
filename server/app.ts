@@ -3,7 +3,10 @@ import path = require('path');
 import express = require('express');
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
+import session = require('express-session');
+import mongoStore = require('connect-mongodb');
 import methodOverride = require('method-override');
+
 import Express = express.Express;
 
 import {logger} from './logger';
@@ -15,15 +18,22 @@ type apiInfo = {
 interface IConfig {
     port: number,
     routesPath: string,
-    databaseUrl: string,
-    api: apiInfo
+    api: apiInfo,
+    mongoose: {
+        url: string,
+        options?: {
+            user?: string,
+            pass?: string,
+        }
+    }
 }
 
 export class App {
     public expressApp: Express;
+    private _connectionData;
 
     constructor(private _config: IConfig) {
-        connect(_config.databaseUrl);
+        this._connectionData = connect(_config.mongoose.url, _config.mongoose.options);
         this.expressApp = express();
         this._configure();
         this._connectRoutes();
@@ -47,10 +57,23 @@ export class App {
     }
 
     private _configure(): void {
-        const app = this.expressApp;
+        const db = this._connectionData.db,
+            app = this.expressApp;
+
+
+        // logger.info(this._);
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(cookieParser());
+        // app.use(session({
+        //     store: mongoStore({
+        //         dbname: db.db.databaseName,
+        //         host: db.db.serverConfig.host,
+        //         port: db.db.serverConfig.port,
+        //         username: db.uri.username,
+        //         password: db.uri.password
+        //     })
+        // }));
         app.use(methodOverride())
     }
 

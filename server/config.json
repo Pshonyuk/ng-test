@@ -1,7 +1,13 @@
 {
   "port": 3000,
   "routesPath": "./routes",
-  "databaseUrl": "mongodb://localhost/ng-app",
+  "mongoose": {
+    "url": "mongodb://localhost/ng-app",
+    "options": {
+      "pass": "admin",
+      "user": "admin"
+    }
+  },
   "api": {
     "version": "0.0.1"
   }

@@ -10,7 +10,7 @@ var mongoose_1 = require("./db/mongoose");
 var App = (function () {
     function App(_config) {
         this._config = _config;
-        mongoose_1.connect(_config.databaseUrl);
+        this._connectionData = mongoose_1.connect(_config.mongoose.url, _config.mongoose.options);
         this.expressApp = express();
         this._configure();
         this._connectRoutes();
@@ -35,10 +35,20 @@ var App = (function () {
         });
     };
     App.prototype._configure = function () {
-        var app = this.expressApp;
+        var db = this._connectionData.db, app = this.expressApp;
+        // logger.info(this._);
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(cookieParser());
+        // app.use(session({
+        //     store: mongoStore({
+        //         dbname: db.db.databaseName,
+        //         host: db.db.serverConfig.host,
+        //         port: db.db.serverConfig.port,
+        //         username: db.uri.username,
+        //         password: db.uri.password
+        //     })
+        // }));
         app.use(methodOverride());
     };
     App.prototype._connectRoutes = function () {
