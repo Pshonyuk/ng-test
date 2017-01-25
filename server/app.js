@@ -12,6 +12,7 @@ var App = (function () {
         this._config = _config;
         mongoose_1.connect(_config.databaseUrl);
         this.expressApp = express();
+        this._configure();
         this._connectRoutes();
         //temp
         this.expressApp.use(function (req, res, next) {
@@ -35,12 +36,10 @@ var App = (function () {
     };
     App.prototype._configure = function () {
         var app = this.expressApp;
-        app.configure(function () {
-            app.use(bodyParser.json());
-            app.use(bodyParser.urlencoded({ extended: false }));
-            app.use(cookieParser());
-            app.use(methodOverride());
-        });
+        app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({ extended: false }));
+        app.use(cookieParser());
+        app.use(methodOverride());
     };
     App.prototype._connectRoutes = function () {
         var _this = this;

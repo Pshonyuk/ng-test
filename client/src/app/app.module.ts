@@ -1,17 +1,17 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-import {AppRoutingModule} from './app-routing.module';
 
+import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BooksComponent} from './books/';
 import {ListComponent} from './books/list';
 import {EditorComponent} from './books/editor';
-import { SessionComponent } from './session/';
-import { UsersComponent } from './users/';
-import { CreateComponent } from './users/create/';
-import { InfoComponent } from './users/info/';
+import {SessionComponent} from './session/';
+import {UsersComponent} from './users/';
+import {CreateComponent} from './users/create/';
+import {InfoComponent} from './users/info/';
 
 @NgModule({
     declarations: [
@@ -27,6 +27,7 @@ import { InfoComponent } from './users/info/';
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpModule,
         AppRoutingModule
     ],

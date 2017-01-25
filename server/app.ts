@@ -25,6 +25,7 @@ export class App {
     constructor(private _config: IConfig) {
         connect(_config.databaseUrl);
         this.expressApp = express();
+        this._configure();
         this._connectRoutes();
 
         //temp
@@ -47,12 +48,10 @@ export class App {
 
     private _configure(): void {
         const app = this.expressApp;
-        app.configure(function() {
-            app.use(bodyParser.json());
-            app.use(bodyParser.urlencoded({ extended: false }));
-            app.use(cookieParser());
-            app.use(methodOverride())
-        });
+        app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({ extended: false }));
+        app.use(cookieParser());
+        app.use(methodOverride())
     }
 
     private _connectRoutes(): void {

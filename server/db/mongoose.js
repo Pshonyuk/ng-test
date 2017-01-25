@@ -1,6 +1,7 @@
 "use strict";
 var mongoose = require("mongoose");
 var logger_1 = require("../logger");
+mongoose.Promise = global.Promise;
 exports.connect = function (url) {
     mongoose.connect(url);
     var db = mongoose.connection;

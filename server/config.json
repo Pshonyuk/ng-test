@@ -1,7 +1,7 @@
 {
-  "port": 3001,
+  "port": 3000,
   "routesPath": "./routes",
-  "databaseUrl": "mongodb://localhost/mongoDB",
+  "databaseUrl": "mongodb://localhost/ng-app",
   "api": {
     "version": "0.0.1"
   }

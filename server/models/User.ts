@@ -1,5 +1,6 @@
 import crypto = require('crypto');
-import {model, Schema} from "mongoose";
+import beautifyUnique = require('mongoose-beautiful-unique-validation');
+import {model, Schema} from 'mongoose';
 
 const UserSchema = new Schema({
     email: {
@@ -8,7 +9,7 @@ const UserSchema = new Schema({
         required: true,
         validate: {
             validator: function(v) {
-                return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
+                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
             },
             message: '{VALUE} is not a valid email address!'
         }
@@ -16,8 +17,8 @@ const UserSchema = new Schema({
     hashedPassword: {
         type: String,
         required: true,
-        min: [6, "Your password is too short!"],
-        max: [16, "Your password is too long!"]
+        min: [6, 'Your password is too short!'],
+        max: [16, 'Your password is too long!']
     },
     salt: {
         type: String,
@@ -43,5 +44,7 @@ UserSchema.virtual('password')
 UserSchema.methods.checkPassword = function(password) {
     return this.encryptPassword(password) === this.hashedPassword;
 };
+
+UserSchema.plugin(beautifyUnique);
 
 export const UserModel = model('User', <any>UserSchema);

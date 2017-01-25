@@ -1,6 +1,8 @@
 import mongoose = require('mongoose');
 import {logger} from '../logger';
 
+mongoose.Promise = global.Promise;
+
 export const connect = (url: string): void => {
     mongoose.connect(url);
     const db = mongoose.connection;

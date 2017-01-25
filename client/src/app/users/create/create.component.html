@@ -1,18 +1,42 @@
-<form name="new-user" (submit)="onSubmit()">
-    <label class="input-wrapper clearfix">
-        <span>Email address</span>
-        <input type="email" name="email" required placeholder="Email address" ngModel>
-    </label>
-    <label class="input-wrapper clearfix">
-        <span>password</span>
-        <input type="password" minlength="6" maxlength="16" name="password" required placeholder="Password" ngModel>
-    </label>
-    <label class="input-wrapper clearfix">
-        <span>confirm password</span>
-        <input type="password" minlength="6" maxlength="16" name="confirm-password" required placeholder="Password" ngModel>
-    </label>
-    <div class="actions clearfix">
-        <input type="submit" value="Create">
-        <button>Cancel</button>
+<div class="panel panel-default col-md-4 col-md-offset-4">
+    <div class="panel-body">
+        <form [formGroup]="userForm" (submit)="onSubmit()">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Email Address" formControlName="email">
+
+                <div *ngIf="formErrors.email" class="alert alert-danger">
+                    {{ formErrors.email }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password"
+                       formControlName="password">
+
+                <div *ngIf="formErrors.password" class="alert alert-danger">
+                    {{ formErrors.password }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password"
+                       formControlName="confirmPassword">
+
+                <div *ngIf="formErrors.confirmPassword" class="alert alert-danger">
+                    {{ formErrors.confirmPassword }}
+                </div>
+            </div>
+            <hr class="colorgraph">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <a (click)="onCancel()" class="btn btn-warning btn-block btn-lg">Cancel</a>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"
+                           [disabled]="userForm.invalid">
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>

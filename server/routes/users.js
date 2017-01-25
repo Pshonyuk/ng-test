@@ -1,20 +1,50 @@
 "use strict";
 var express = require("express");
 var Router = express.Router;
+var User_1 = require("../models/User");
 var logger_1 = require("../logger");
-exports.path = "/api/users";
+var errorsData;
+(function (errorsData) {
+    errorsData.CONFIRM_PASSWORD = {
+        code: 0,
+        field: 'confirmPassword',
+        type: 'confirm'
+    };
+    errorsData.DUPLICATED_EMAIL = {
+        code: 0,
+        field: 'email',
+        type: 'duplicated'
+    };
+    errorsData.UNKNOWN = {
+        code: 0,
+        type: 'unknown'
+    };
+})(errorsData = exports.errorsData || (exports.errorsData = {}));
+exports.path = '/api/users';
 exports.action = function (app) {
     var router = Router();
     router.use(function (req, res, next) {
         next();
     });
     router.post('/', function (req, res) {
-        logger_1.logger.info("test post");
-        res.json({ test: 1 });
+        if (req.body.password !== req.body.confirmPassword) {
+            res.json({ error: errorsData.CONFIRM_PASSWORD });
+            return;
+        }
+        new User_1.UserModel(req.body).save().then(function () {
+            res.json({});
+        }).catch(function (err) {
+            if (err.name === 'ValidationError' && err.errors && err.errors.email) {
+                res.json({ error: errorsData.DUPLICATED_EMAIL });
+                return;
+            }
+            logger_1.logger.error(JSON.stringify(err));
+            res.json({ error: errorsData.UNKNOWN });
+        });
     });
     router.get('/', function (req, res) {
-        logger_1.logger.info("test get");
-        res.json({ test: 1 });
+        logger_1.logger.info('test get');
+        res.json({ test: 'get' });
     });
     return router;
 };
