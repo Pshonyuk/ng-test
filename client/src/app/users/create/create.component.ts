@@ -39,17 +39,6 @@ export class CreateComponent implements OnInit {
         this.buildForm();
     }
 
-    private onSubmit(): void {
-        if (this.userForm && !this.userForm.invalid) {
-            this._apiService.post("users", this.userForm.value)
-                .subscribe(data => this.onPost(data));
-        }
-    }
-
-    private onCancel(): void {
-        this._router.navigate(['']);
-    }
-
     private buildForm(): void {
         this.userForm = new FormGroup({
             'email': new FormControl('helmer@ex.ua', [
@@ -68,6 +57,24 @@ export class CreateComponent implements OnInit {
             .subscribe(data => this.onValueChanged(data));
 
         this.onValueChanged();
+    }
+
+    private onValueChanged(data?: any): void {
+        if (!this.userForm) return;
+        const form = this.userForm,
+            validationMessages = CreateComponent.validationMessages;
+
+        for (const field in validationMessages) {
+            this.formErrors[field] = '';
+            const control = form.get(field);
+
+            if (control && control.dirty && !control.valid) {
+                const messages = validationMessages[field];
+                for (const key in control.errors) {
+                    this.formErrors[field] += messages[key] + ' ';
+                }
+            }
+        }
     }
 
     private onPost(data): void {
@@ -89,22 +96,15 @@ export class CreateComponent implements OnInit {
         this._router.navigate(['']);
     }
 
-    private onValueChanged(data?: any): void {
-        if (!this.userForm) return;
-        const form = this.userForm,
-            validationMessages = CreateComponent.validationMessages;
-
-        for (const field in validationMessages) {
-            this.formErrors[field] = '';
-            const control = form.get(field);
-
-            if (control && control.dirty && !control.valid) {
-                const messages = validationMessages[field];
-                for (const key in control.errors) {
-                    this.formErrors[field] += messages[key] + ' ';
-                }
-            }
+    private onSubmit(): void {
+        if (this.userForm && !this.userForm.invalid) {
+            this._apiService.post("users", this.userForm.value)
+                .subscribe(data => this.onPost(data));
         }
+    }
+
+    private onCancel(): void {
+        this._router.navigate(['']);
     }
 
     private _confirmPasswordValidator(): ValidatorFn {
