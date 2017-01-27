@@ -1,1 +1,1 @@
-export {InfoComponent} from './info.component';
+export { InfoComponent } from './info.component';

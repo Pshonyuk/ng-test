@@ -4,7 +4,9 @@ var path = require("path");
 var express = require("express");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
+var session = require("express-session");
 var methodOverride = require("method-override");
+var MySQLStore = require("express-mysql-session");
 var logger_1 = require("./logger");
 var mongoose_1 = require("./db/mongoose");
 var App = (function () {
@@ -35,21 +37,28 @@ var App = (function () {
         });
     };
     App.prototype._configure = function () {
-        var db = this._connectionData.db, app = this.expressApp;
-        // logger.info(this._);
+        var config = this._config, app = this.expressApp;
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(cookieParser());
-        // app.use(session({
-        //     store: mongoStore({
-        //         dbname: db.db.databaseName,
-        //         host: db.db.serverConfig.host,
-        //         port: db.db.serverConfig.port,
-        //         username: db.uri.username,
-        //         password: db.uri.password
-        //     })
-        // }));
+        app.use(session({
+            key: config.cookie.key,
+            secret: config.cookie.secret,
+            store: this._createSessionStore(),
+            resave: true,
+            saveUninitialized: true
+        }));
         app.use(methodOverride());
+    };
+    App.prototype._createSessionStore = function () {
+        var mongoConfig = this._config.mongoose.options, db = this._connectionData.db, options = {
+            host: db.host,
+            port: db.port,
+            user: mongoConfig.user,
+            password: mongoConfig.pass,
+            database: 'ng-app'
+        };
+        return new (MySQLStore(session))(options);
     };
     App.prototype._connectRoutes = function () {
         var _this = this;

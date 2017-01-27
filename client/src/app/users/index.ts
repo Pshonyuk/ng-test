@@ -1,2 +1,2 @@
-export {UsersComponent} from './users.component';
-export {usersRoutes} from './users.routes';
+export { UsersComponent } from './users.component';
+export { usersRoutes } from './users.routes';

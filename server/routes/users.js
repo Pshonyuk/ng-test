@@ -6,17 +6,14 @@ var logger_1 = require("../logger");
 var errorsData;
 (function (errorsData) {
     errorsData.CONFIRM_PASSWORD = {
-        code: 0,
         field: 'confirmPassword',
         type: 'confirm'
     };
     errorsData.DUPLICATED_EMAIL = {
-        code: 0,
         field: 'email',
         type: 'duplicated'
     };
     errorsData.UNKNOWN = {
-        code: 0,
         type: 'unknown'
     };
 })(errorsData = exports.errorsData || (exports.errorsData = {}));

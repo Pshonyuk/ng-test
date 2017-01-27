@@ -1,11 +1,15 @@
 {
   "port": 3000,
   "routesPath": "./routes",
+  "cookie": {
+    "key": "ng-application",
+    "secret": "bgf&(b68{}fdsj65&FFd844/"
+  },
   "mongoose": {
     "url": "mongodb://localhost/ng-app",
     "options": {
-      "pass": "admin",
-      "user": "admin"
+      "user": "ngUser",
+      "pass": "ungUserPass"
     }
   },
   "api": {

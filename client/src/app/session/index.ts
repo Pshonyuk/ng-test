@@ -1,1 +1,1 @@
-export {SessionComponent} from './session.component';
+export { SessionComponent } from './session.component';

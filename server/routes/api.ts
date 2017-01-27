@@ -5,15 +5,15 @@ import Router = express.Router;
 export const path: string = "/api";
 
 export const action = (app) => {
-    const router = Router();
+	const router = Router();
 
-    router.use((req, res, next) => {
-        next();
-    });
+	router.use((req, res, next) => {
+		next();
+	});
 
-    router.get('/', (req, res) => {
-        res.json(app.apiInfo);
-    });
+	router.get('/', (req, res) => {
+		res.json(app.apiInfo);
+	});
 
-    return router;
+	return router;
 };
